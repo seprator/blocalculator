@@ -61,47 +61,50 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.purple[100],
       body: Column(
         children: [
-          Expanded(
-            child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: BlocBuilder<UserQuestionCubit, UserQuestionState>(
-                    builder: (context, state) {
-                      return Text(
-                        state.userQ,
-                        style: const TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      );
-                    },
-                  ),
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: 500,
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: BlocBuilder<UserQuestionCubit, UserQuestionState>(
+                  builder: (context, state) {
+                    return Text(
+                      state.userQ,
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
               ),
-              Container(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: BlocBuilder<UserAnswerCubit, UserAnswerState>(
-                    builder: (context, state) {
-                      return Text(
-                        state.userA,
-                        style: const TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      );
-                    },
-                  ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: BlocBuilder<UserAnswerCubit, UserAnswerState>(
+                  builder: (context, state) {
+                    return Text(
+                      state.userA,
+                      style: const TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
               ),
-            ]),
-          ),
-          Expanded(
-            flex: 2,
+            ),
+          ]),
+          SizedBox(
+            width: 500,
+            height: MediaQuery.of(context).size.height * 0.7,
             child: GridView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
                 itemBuilder: (BuildContext ctx, int index) {
                   //clear
